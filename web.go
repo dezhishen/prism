@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func RunListening(db *leveldb.DB) {
+func RunListening(db *leveldb.DB, addr string) {
 	router := gin.New()
 	router.Use(gin.Recovery())
 	router.LoadHTMLGlob("/web/*.html")
