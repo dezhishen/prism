@@ -279,7 +279,7 @@ func runPerf(ctx context.Context, queueTask chan []byte, rd *perf.Reader) {
 	go SaveHttpData(db, saveChan)
 
 	// gin listening
-	go RunListening(db)
+	go RunListening(db, HttpAddr)
 
 	var merge []uint8
 	for {
