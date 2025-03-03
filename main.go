@@ -32,6 +32,7 @@ var (
 	DataPath      string
 	Debug         bool
 	Verbose       bool
+	HttpAddr      string
 )
 
 func init() {
@@ -39,6 +40,7 @@ func init() {
 	flag.StringVar(&DataPath, "p", "./db", "a network interface name")
 	flag.BoolVar(&Debug, "d", false, "output debug information")
 	flag.BoolVar(&Verbose, "v", false, "output more detailed information")
+	flag.StringVar(&HttpAddr, "l", ":8080", "http server listen addr")
 }
 
 func main() {
@@ -167,7 +169,7 @@ func runRingBuf(ctx context.Context, queueTask chan []byte, rd *ringbuf.Reader) 
 	go SaveHttpData(db, saveChan)
 
 	// gin listening
-	go RunListening(db)
+	go RunListening(db, HttpAddr)
 
 	var merge []uint8
 	for {
