@@ -25,7 +25,7 @@ func RunListening(db *leveldb.DB, addr string) {
 	router.GET("/interface", h.list)
 	router.GET("/refresh", h.refresh)
 
-	router.Run(":8080")
+	router.Run(addr)
 }
 
 type Handler struct {
